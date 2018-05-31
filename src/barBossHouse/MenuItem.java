@@ -4,6 +4,7 @@ import java.util.Formatter;
 
 abstract public class MenuItem {
 
+    //todo следующие 3 поля приватные, для их инициализации в консрукторе подкласса нужно будет вызывать конструктор суперкласса(то бишь этого класса)
     public double dishPrice;
     public String nameOfTheDish;
     public String dishDescription;
@@ -11,7 +12,7 @@ abstract public class MenuItem {
     public static final int DISH_PRICE_DEFAULT=0;
     public static final String DISH_DESCRIPTION_DEFAULT="";
 
-
+    //todo почему в этом конструкторе не вызывается конструктор с большим числом параметров?
     protected MenuItem(String nameOfTheDish, String dishDescription){
 
         this.nameOfTheDish=nameOfTheDish;
@@ -51,6 +52,7 @@ abstract public class MenuItem {
       if(dishPrice!=DISH_PRICE_DEFAULT) dish.append(dishPrice+" p.");
       return dish.toString();*/
     }
+    //todo забыла проверку !=null, ==this, и instanceof MenuItem
     @Override
     public boolean equals(Object obj){
         MenuItem tmp = (MenuItem)obj;

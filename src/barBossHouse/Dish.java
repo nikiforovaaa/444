@@ -7,13 +7,14 @@ public class Dish extends MenuItem {
     public Dish(String nameOfTheDish, String dishDescription) {
         this(nameOfTheDish, DISH_PRICE_DEFAULT, dishDescription);
     }
-
+    //todo Где вызов констрктора суперкласса?!?!?!?!
     public Dish(String nameOfTheDish, double dishPrice, String dishDescription) {
         this.nameOfTheDish = nameOfTheDish;
         this.dishPrice = dishPrice;
         this.dishDescription = dishDescription;
     }
 
+    //todo не дублируй код в следующих 3-х методах, в реализации этих методов в классе MenuItem почти весь тот же код. Используй версию метода из суперкласса
     @Override
     public String toString() {
         StringBuilder fullDish = new StringBuilder();

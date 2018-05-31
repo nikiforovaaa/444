@@ -16,7 +16,7 @@ public class TableOrderManager implements OrdersManager {
     public int quantityOrdersToday (LocalDate day){
         int count = 0;
         for(int j=0; j<SIZE; j++) {
-            if (orders[j]!=null && orders[j].getToday().equals(day))
+            if (orders[j]!=null && orders[j].getToday().equals(day))//todo сравниваешь LocalDate и LocalDateTime. А нужно из LocalDateTime получить LocalDate, и потом уже сравнивать
                 count++;
         }
         return count;
@@ -27,12 +27,12 @@ public class TableOrderManager implements OrdersManager {
     public Order[] ordersToday (LocalDate day){
         int count = 0;
         for(int j=0; j<SIZE; j++) {
-            if (orders[j]!=null && orders[j].getToday().equals(day))
+            if (orders[j]!=null && orders[j].getToday().equals(day))//todo сравниваешь LocalDate и LocalDateTime. А нужно из LocalDateTime получить LocalDate, и потом уже сравнивать
                 count++;
         }
         Order[] ordersToday = new TableOrder[count];
         for(int i =0,j=0; j<SIZE; i++){
-            if (orders[j].getToday().equals(day) && orders!=null)
+            if (orders[j].getToday().equals(day) && orders!=null)//todo сравниваешь LocalDate и LocalDateTime. А нужно из LocalDateTime получить LocalDate, и потом уже сравнивать
                 ordersToday[j]=orders[j];
             j++;
         }
@@ -72,6 +72,7 @@ public class TableOrderManager implements OrdersManager {
     //метод добавления блюда к заказу. В качестве параметра принимает номер столика и блюдо
     public void addDish (MenuItem dish, int tableNumber)
     {
+        //todo цикл то здесь зачем?!?! А зачем вообще этотм метод, когда есть следующий?!?!
         for (int i=0;i<SIZE;i++)
         {
             orders[tableNumber].add(dish);
@@ -97,7 +98,7 @@ public class TableOrderManager implements OrdersManager {
     //возвращающий номер первого найденного свободного столика.
     public int freeTableNumber ()
     {
-        int freeTable=10;
+        int freeTable=10; //todo при поиске индексов, обычно задается значение -1
         System.out.println("Свободный столик");
         for (int i=0;i<orders.length;i++)
         {
@@ -105,6 +106,9 @@ public class TableOrderManager implements OrdersManager {
                 freeTable=i;
                 return freeTable;
             }
+            /*todo это исключение выбрасывается если нет свободных столиков в принципе, а не если i-й элемент массива не пустой
+            * Сообщение исключения тоже подредактируй. И не надо капслука и кучи восклицательных знаков =)))
+            */
             if(orders[i]!=null) throw new NoFreeTableException("THIS TABLE IS BUSY!!!!!");
         }
         return freeTable;

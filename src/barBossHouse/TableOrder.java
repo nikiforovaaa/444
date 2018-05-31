@@ -7,7 +7,7 @@ public class TableOrder implements Order {
     private MenuItem[] Dishes;
     public int size = 0;
     public Customer customer;
-    LocalDateTime today= LocalDateTime.now();
+    LocalDateTime today= LocalDateTime.now(); //todo переименуй
 
     public TableOrder() {
         this(SIZE_DEFAULT, Customer.MATURE_UNKNOWN_CUSTOMER);
@@ -17,7 +17,7 @@ public class TableOrder implements Order {
         if (size<0) throw new NegativeSizeException ("Size of the array must be >0");
         this.Dishes = new MenuItem[size];
         this.customer=customer;
-        this.today=today;
+        this.today=today; //todo Oh my gosh!
     }
 
     public TableOrder(MenuItem[] Dishes, Customer customer) {
@@ -95,6 +95,7 @@ public class TableOrder implements Order {
 
 
     //возвращающий общее число блюд
+    //todo Если метод возвращает общще число блюд, но НАФИГА ОН ПРИНИМАЕТ ПАРАМЕТР?!?!?!?!?! ОН БЕЗ ПАРАМЕТРОВ!!!!!! И ЧТО ЭТО ЗА 0 В ИМЕНИ?!?!?!?!
     public int dishQuantity0(MenuItem allItem) {
         return size;
     }
@@ -206,9 +207,9 @@ public class TableOrder implements Order {
         if (obj==null && !this.getClass().equals(obj.getClass())) return false;
 
         TableOrder equalsCheck = (TableOrder)obj;
-        MenuItem[] allItems = this.getDishes();
+        //todo убрал 0 в имени метода и использовал поле - так будет корректнее. Но Size и customer лучше сначала проверить. (ибо если что-то не совпадает, диши проверять не надо)
         for(int i =0; i<size; i++){
-            if (this.dishQuantity0(allItems[i]) != equalsCheck.dishQuantity0(allItems[i]))
+            if (this.dishQuantity(Dishes[i]) != equalsCheck.dishQuantity(Dishes[i]))
                 return false;
         }
         return (this.customer.equals(equalsCheck.customer)
@@ -223,6 +224,7 @@ public class TableOrder implements Order {
         }
         return size^customer.hashCode()^hash;
     }
+    //todo Методы то нужно нормально реализовать...
     @Override
     public boolean remove(MenuItem menuItem) {
         return false;

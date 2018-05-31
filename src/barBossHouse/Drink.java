@@ -2,6 +2,7 @@ package barBossHouse;
 
 import java.util.Formatter;
 
+//todo замечания аналогично Dish
 public class Drink extends MenuItem implements Alcoholable {
     double alcoholVol;
     DrinkTypeEnum type;
@@ -32,7 +33,7 @@ public class Drink extends MenuItem implements Alcoholable {
     }
 
     public boolean isAlcoholicDrink() {
-        return false;
+        return false; //todo почему false то? Смотри по заданию
     }
     public double getAlcoholVol() {
         return alcoholVol;

@@ -21,7 +21,7 @@ public  class InternetOrdersManager implements OrdersManager {
         QueueNode node = head;
         int count = 0;
         for(int j=0; j<size; j++) {
-            if (node.getValue().getToday().toLocalDate().equals(day))
+            if (node.getValue().getToday().toLocalDate().equals(day))//todo Вот блин здесь то нормально сделала, а в TableOrderManager - нет.
                 count++;
             node = node.getNext();
 
@@ -72,6 +72,7 @@ public  class InternetOrdersManager implements OrdersManager {
     public boolean add(Order order){
 
         QueueNode node = new QueueNode();
+        //todo - нет, нужно пройтись по каждому ноду и у каждого заказа проверить время и кастомера
         if(node.getValue().getCustomer().equals(node.getNext().getValue().getCustomer()) && node.getValue().getToday().equals(node.getNext().getValue().getToday()))
             throw new AlreadyAddedException("Order exist");
         if (head == null)

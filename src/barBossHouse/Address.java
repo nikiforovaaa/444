@@ -2,6 +2,7 @@ package barBossHouse;
 import java.util.Formatter;
 
 public final class Address {
+    //todo поля должны быть приватными
     String cityName, streetName;
     int zipCode, buildingNumber, apartmentNumber;
     char buildingLetter;
@@ -62,6 +63,7 @@ public final class Address {
     }
     @Override
     public String toString(){
+        //вот это ты тут намудрила =)))) МОжно было просто return String.Format("Address: %s %d %s %d %c - %d", cityName,zipCode,streetName,buildingNumber,buildingLetter,apartmentNumber))
         StringBuilder fullAddress = new StringBuilder("Address: ");
         Formatter fmt = new Formatter(fullAddress);
         fmt.format("Address: %s %d %s %d %c - %d", cityName,zipCode,streetName,buildingNumber,buildingLetter,apartmentNumber);

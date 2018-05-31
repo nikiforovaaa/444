@@ -3,22 +3,23 @@ package barBossHouse;
 import java.time.LocalDateTime;
 
 public class InternetOrder implements Order {
+    //todo поля приватные
     int size;
     ListNode head;
     ListNode tail;
     private Customer customer;
-    MenuItem[] menuItems;
+    MenuItem[] menuItems; //todo А че здесь делает массив?!?!?! никаких массивов, храним только head и tail
     private static final int SIZE_DEFAULT = 16;
     LocalDateTime today = LocalDateTime.now();
 
     InternetOrder() {
-        this.today = today;
+        this.today = today; //todo Oh my gosh!
     }
 
     InternetOrder(MenuItem[] menuItems, Customer customer) {
-        this.menuItems = menuItems;
+        this.menuItems = menuItems; //todo пробегаешься по элементам menuItems и добавляешь в список
         this.customer = customer;
-        this.today = today;
+        this.today = today; //todo Oh my gosh!
     }
 
     public void setToday() {
@@ -59,6 +60,7 @@ public class InternetOrder implements Order {
         ListNode current = head;if (current.getValue().equals(menuItem))
         if (size != 0) {
             for (int i = 0; i < size; i++) {
+                //todo ошибка. Здесь сравниваешь имя блюда сблюдом, а нужно блюдо с блюсдом
                 if (current.value.getName().equals(menuItem)) {
                     current.Remove(previous, current);
                     return true;
@@ -127,9 +129,9 @@ public class InternetOrder implements Order {
     }
 
     //возвращающий общее число блюд
-    public int dishQuantity0(MenuItem allItem) {
+    public int dishQuantity0(MenuItem allItem) { //todo это что за сферический метод в вакууме?!?! Он должен делать почти тоже самое, что и следующий метод, но вместо имени проерять сами блюда equals()
         return size;
-    }
+    } //todo и 0 убери из имени. Есть такая штука - называется перегрузка
 
 
     //возвращающий число заказанных блюд (принимает название блюда в качестве параметра)
@@ -225,17 +227,18 @@ public class InternetOrder implements Order {
 
     public boolean equals(Object obj){
         if (this == obj) return true;
-        if (obj==null && !this.getClass().equals(obj.getClass()))
+        if (obj==null || !this.getClass().equals(obj.getClass()))
             return false;
 
         TableOrder equalsCheck = (TableOrder)obj;
+        //todo Это нафига тебе массив? в цикле идешь по нодам
         MenuItem[] items = this.getDishes();
         for(int i =0; i<size; i++){
             if (this.dishQuantity0(items[i]) != equalsCheck.dishQuantity0(items[i]))
                 return false;
         }
         return (this.customer.equals(equalsCheck.customer)
-                && this.size==equalsCheck.size);
+                && this.size==equalsCheck.size); //todo вот это обычно проверяют сначала, а уж потом по коллекциям проходят (чтоб более тяжелые проверки проверялись в конце)
     }
 
     public int hashCode(){

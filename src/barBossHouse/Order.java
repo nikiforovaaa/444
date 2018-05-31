@@ -3,7 +3,7 @@ package barBossHouse;
 import java.time.LocalDateTime;
 
 public interface Order {
-
+    //todo посмотри внимательно по
     Customer getCustomer();
     void setCustomer(Customer customer);
     boolean add(MenuItem dish);
@@ -18,6 +18,7 @@ public interface Order {
     String toString();
     boolean equals(Object obj);
     int hashCode();
-    public void setToday();
+    //todo это что еще за Today такой? today-сегодня, а тебе нужна дата заказа.
+    public void setToday();  //todo а почему у тебя set без параметра ?!?!?!?!?!
     public LocalDateTime getToday();
 }
